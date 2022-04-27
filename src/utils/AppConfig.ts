@@ -1,9 +1,9 @@
 export const AppConfig = {
   site_name: 'Starter',
-  title: 'Next.js Boilerplate',
+  title: 'Sabbagh\'s Blagh',
   description:
-    'Starter code for your Next.js blog Boilerplate with Tailwind CSS',
-  url: 'https://example.com',
+    'The Software blog of a Development Journeyman',
+  url: 'https://sabbagh.blog',
   locale: 'en',
   author: 'Anonymous',
   pagination_size: 5,

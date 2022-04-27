@@ -5,19 +5,15 @@ import { Meta } from '../layout/Meta';
 import { Main } from '../templates/Main';
 
 const About = () => (
-  <Main meta={<Meta title="Lorem ipsum" description="Lorem ipsum" />}>
+  <Main meta={<Meta title="About" description="About" />}>
     <Content>
       <p>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione fuga
-        recusandae quidem. Quaerat molestiae blanditiis doloremque possimus
-        labore voluptatibus distinctio recusandae autem esse explicabo molestias
-        officia placeat, accusamus aut saepe.
+        Hi, I'm a software engineer with a fun arabic name, who also likes
+        puns and <i>Arrested Development</i>.
       </p>
+
       <p>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione fuga
-        recusandae quidem. Quaerat molestiae blanditiis doloremque possimus
-        labore voluptatibus distinctio recusandae autem esse explicabo molestias
-        officia placeat, accusamus aut saepe.
+        I've been in the software biz for almost ten years now, and have climbed my way up the stack from C to TypeScript. These days I get to work with a bunch of friends and am doing Infrastructure and Azure things. 
       </p>
     </Content>
   </Main>
