@@ -1,5 +1,5 @@
 export const AppConfig = {
-  site_name: 'Starter',
+  site_name: 'Sabbagh\'s Blagh',
   title: 'Sabbagh\'s Blagh',
   description:
     'The Software blog of a Development Journeyman',
