@@ -42,9 +42,9 @@ resource "azurerm_log_analytics_workspace" "Log-Analytics-Workspace" {
   retention_in_days   = 30
 ```
 
-Custom Logs, however, are not configurable via the `azurerm` provider. [See this thread for the back-and-forth between hashicorp and microsoft folks](https://github.com/hashicorp/terraform-provider-azurerm/issues/3182). I began dusting off my "shell it out" pun until I discovered that the Azure folks working on infrastructure things published the `azapi` provider, which allows for managing resources not yet supported in azurerm` .
+Custom Logs, however, are not configurable via the `azurerm` provider. [See this thread for the back-and-forth between hashicorp and microsoft folks](https://github.com/hashicorp/terraform-provider-azurerm/issues/3182). I began dusting off my "shell it out" pun until I discovered that the Azure folks working on infrastructure things published the `azapi` provider, which allows for managing resources not yet supported in `azurerm` .
 
-The azapi_resource` accepts a json object of properties that should match the ARM template of the resource you're trying to create. So I exported the ARM template of the Log Analytics workspace (which is the parent_id` of the custom log), hoping to find the ARM template of the custom log in there. Unfortunately, I was greeted with this error:
+The `azapi_resource` accepts a json object of properties that should match the ARM template of the resource you're trying to create. So I exported the ARM template of the Log Analytics workspace (which is the `parent_id` of the custom log), hoping to find the ARM template of the custom log in there. Unfortunately, I was greeted with this error:
 
 
 
@@ -141,7 +141,7 @@ resource "azapi_resource" "VarLogMessages-Logs-Ingest" {
 }
 ```
 
-I'm not sure exactly why the TimeGenerated` column is necessary. I tried to do without it but got errors indicating that I needed to include it. 🤷 
+I'm not sure exactly why the `TimeGenerated` column is necessary. I tried to do without it but got errors indicating that I needed to include it. 🤷 
 
 In order to ship the logs from the VM to Azure, you'll need to install two agents on each box - the Dependency Agent and the Monitoring Agent. I think you might be able to enforce installation of these agents via an Azure policy, but for my relatively small architecture it seemed too complicated (Azure policies, ugh...). I queried the azure cli for the latest versions of the two agents:
 
@@ -180,7 +180,7 @@ gives
 ]
 ```
 
-So we can utilize the azurerm_virtual_machine_scale_set_extension` resource for the agents, specifying those versions:
+So we can utilize the `azurerm_virtual_machine_scale_set_extension` resource for the agents, specifying those versions:
 
 ```
 resource "azurerm_virtual_machine_scale_set_extension" "Logs-Monitoring-Agent" {
