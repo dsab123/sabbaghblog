@@ -1,4 +1,10 @@
-# Linux VM Custom Logs with Terraform and AzApi
+---
+title: 'Linux VM Custom Logs with Terraform and AzApi'
+description: Ive been doing a lot of work recently on the linux side of ...'
+date: '2022-04-26'
+modified_date: '2022-04-26'
+image: /assets/images/posts/ac-unit.jpg
+---
 
 I've been doing a lot of work recently on the linux side of our product's infrastructure, which consists of a few Azure VMs and VM Scale Sets.
 
@@ -7,10 +13,10 @@ As you can imagine, SSHing into each instance to check logs was getting to be a 
 This post will explain how I did that via terraform.
 
 Some thanks are in order before we look at the code, however:
-- Many thanks to Thorsten Hans, who wrote a [blog post doing a similar thing for Windows machines](https://www.thorsten-hans.com/integrate-virtual-machine-scale-sets-azure-monitor-vminsights-terraform/) without which I wouldn't have figured my solution out.
-- Many thanks to the Azure Terraform folks who rolled out the helpful [azapi terraform provider](https://techcommunity.microsoft.com/t5/azure-tools-blog/announcing-azure-terrafy-and-azapi-terraform-provider-previews/ba-p/3270937) earlier this month.
+-> Many thanks to Thorsten Hans, who wrote a [blog post doing a similar thing for Windows machines](https://www.thorsten-hans.com/integrate-virtual-machine-scale-sets-azure-monitor-vminsights-terraform/) without which I wouldn't have figured my solution out.
+-> Many thanks to the Azure Terraform folks who rolled out the helpful [azapi terraform provider](https://techcommunity.microsoft.com/t5/azure-tools-blog/announcing-azure-terrafy-and-azapi-terraform-provider-previews/ba-p/3270937) earlier this month.
 
-For reference, we're using terraform 1.1.9 and azurerm 2.9.0.
+For reference, we're using terraform 1.1.9 and azurerm 3.3.0.
 
 ---
 ## The Need
@@ -26,13 +32,13 @@ My pattern when terraforming Azure things has been to get it working in the Azur
 Note that the Custom Log is called a Data Source in Azure parlance.
 
 Let's assume the following variables:
-```
+```js
 var.location: the location
 var.resource-group-name: the resource group name
 ```
 
 The Workspace was easy to set up, as the azurerm docs are straightforward:
-```
+```js
 # log-analytics-workspace.tf
 resource "azurerm_log_analytics_workspace" "Log-Analytics-Workspace" {
   name                = "Log-Analytics-Workspace"
@@ -46,11 +52,11 @@ Custom Logs, however, are not configurable via the `azurerm` provider. [See this
 
 The `azapi_resource` accepts a json object of properties that should match the ARM template of the resource you're trying to create. So I exported the ARM template of the Log Analytics workspace (which is the `parent_id` of the custom log), hoping to find the ARM template of the custom log in there. Unfortunately, I was greeted with this error:
 
-
+image
 
 A foray into the MSFT docs led me to a page of templates, [this one](https://docs.microsoft.com/en-us/azure/azure-monitor/logs/resource-manager-workspace#collect-custom-logs) being what I was looking for:
 
-```
+```js
 {
   "apiVersion": "2020-08-01",
   "type": "dataSources",
@@ -97,7 +103,7 @@ A foray into the MSFT docs led me to a page of templates, [this one](https://doc
 
 
 A bit of finagling led to this successfully-created resource:
-```
+```js
 resource "azapi_resource" "VarLogMessages-Logs-Ingest" {
   provider  = azapi
   type      = "Microsoft.OperationalInsights/workspaces/dataSources@2020-08-01" # grabbed this from template's API version
@@ -145,13 +151,13 @@ I'm not sure exactly why the `TimeGenerated` column is necessary. I tried to do 
 
 In order to ship the logs from the VM to Azure, you'll need to install two agents on each box - the Dependency Agent and the Monitoring Agent. I think you might be able to enforce installation of these agents via an Azure policy, but for my relatively small architecture it seemed too complicated (Azure policies, ugh...). I queried the azure cli for the latest versions of the two agents:
 
-```
+```bash
 az vmss extension image list -p Microsoft.Azure.Monitoring.DependencyAgent -n DependencyAgentLinux -l eastus --latest -o jsonc
 ```
 
 gives us
 
-```
+```js
 [
   {
     "name": "DependencyAgentLinux",
@@ -164,13 +170,13 @@ gives us
 
 And for the Monitoring Agent, 
 
-```
+```bash
 az vmss extension image list -p Microsoft.EnterpriseCloud.Monitoring -n OMSAgentForLinux -l eastus --latest -o jsonc
 ```
 
 gives
 
-```
+```js
 [
   {
     "name": "OmsAgentForLinux",
@@ -182,7 +188,7 @@ gives
 
 So we can utilize the `azurerm_virtual_machine_scale_set_extension` resource for the agents, specifying those versions:
 
-```
+```js
 resource "azurerm_virtual_machine_scale_set_extension" "Logs-Monitoring-Agent" {
   virtual_machine_scale_set_id = azurerm_linux_virtual_machine_scale_set.Logs-Scale-Set.id
   auto_upgrade_minor_version   = true

@@ -18,7 +18,7 @@ type IPostProps = {
   description: string;
   date: string;
   modified_date: string;
-  image: string;
+  image?: string;
   content: string;
 };
 
@@ -29,7 +29,7 @@ const DisplayPost = (props: IPostProps) => (
         title={props.title}
         description={props.description}
         post={{
-          image: props.image,
+          image: props.image ?? '',
           date: props.date,
           modified_date: props.modified_date,
         }}
