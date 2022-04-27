@@ -13,7 +13,7 @@ const Index = (props: IBlogGalleryProps) => (
   <Main
     meta={
       <Meta
-        title="Sabbagh's Programming Blagh"
+        title="Sabbagh&apos;s Programming Blagh"
         description={AppConfig.description}
       />
     }
