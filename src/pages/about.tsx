@@ -8,12 +8,12 @@ const About = () => (
   <Main meta={<Meta title="About" description="About" />}>
     <Content>
       <p>
-        Hi, I'm a software engineer with a fun arabic name, who also likes
+        Hi, I&apos;m a software engineer with a fun arabic name, who also likes
         puns and <i>Arrested Development</i>.
       </p>
 
       <p>
-        I've been in the software biz for almost ten years now, and have climbed my way up the stack from C to TypeScript. These days I get to work with a bunch of friends and am doing Infrastructure and Azure things. 
+        I&apos;ve been in the software biz for almost ten years now, and have climbed my way up the stack from C to TypeScript. These days I get to work with a bunch of friends and am doing Infrastructure and Azure things. 
       </p>
     </Content>
   </Main>
