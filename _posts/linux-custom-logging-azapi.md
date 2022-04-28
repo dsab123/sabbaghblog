@@ -13,8 +13,8 @@ As you can imagine, SSHing into each instance to check logs was getting to be a 
 This post will explain how I did that via terraform.
 
 Some thanks are in order before we look at the code, however:
--> Many thanks to Thorsten Hans, who wrote a [blog post doing a similar thing for Windows machines](https://www.thorsten-hans.com/integrate-virtual-machine-scale-sets-azure-monitor-vminsights-terraform/) without which I wouldn't have figured my solution out.
--> Many thanks to the Azure Terraform folks who rolled out the helpful [azapi terraform provider](https://techcommunity.microsoft.com/t5/azure-tools-blog/announcing-azure-terrafy-and-azapi-terraform-provider-previews/ba-p/3270937) earlier this month.
+- 👉 Many thanks to Thorsten Hans, who wrote a [blog post doing a similar thing for Windows machines](https://www.thorsten-hans.com/integrate-virtual-machine-scale-sets-azure-monitor-vminsights-terraform/) without which I wouldn't have figured my solution out.
+- 👉 Many thanks to the Azure Terraform folks who rolled out the helpful [azapi terraform provider](https://techcommunity.microsoft.com/t5/azure-tools-blog/announcing-azure-terrafy-and-azapi-terraform-provider-previews/ba-p/3270937) earlier this month.
 
 For reference, we're using terraform 1.1.9 and azurerm 3.3.0.
 
@@ -52,7 +52,8 @@ Custom Logs, however, are not configurable via the `azurerm` provider. [See this
 
 The `azapi_resource` accepts a json object of properties that should match the ARM template of the resource you're trying to create. So I exported the ARM template of the Log Analytics workspace (which is the `parent_id` of the custom log), hoping to find the ARM template of the custom log in there. Unfortunately, I was greeted with this error:
 
-image
+![Come On, Microsoft](/assets/images/dataSourcesError.png)
+
 
 A foray into the MSFT docs led me to a page of templates, [this one](https://docs.microsoft.com/en-us/azure/azure-monitor/logs/resource-manager-workspace#collect-custom-logs) being what I was looking for:
 
@@ -225,8 +226,11 @@ Here's a [repo with a complete working example](github repo) of the codes.
 
 Here's our custom log in the portal after terraform provisions it. w00t!
 
+![Sweet, sweet provisioning](/assets/images/finallyCustomLogs.png)
 
 And we can use the custom log in a KQL query to retrieve our logs.
+
+![For the record, still hate KQL](/assets/images/KQLLogsCool.png)
 
 ---
 NOTE: for the moment this seems to work only if you're logged in via the azure cli. I've submitted a [github issue](https://github.com/Azure/terraform/issues/99) to figure out why the Custom Log resources aren't able to be authenticated via the standard sp provider configuration.
