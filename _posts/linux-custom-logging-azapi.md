@@ -32,13 +32,13 @@ My pattern when terraforming Azure things has been to get it working in the Azur
 Note that the Custom Log is called a Data Source in Azure parlance.
 
 Let's assume the following variables:
-```js
+```hcl
 var.location: the location
 var.resource-group-name: the resource group name
 ```
 
 The Workspace was easy to set up, as the azurerm docs are straightforward:
-```js
+```hcl
 # log-analytics-workspace.tf
 resource "azurerm_log_analytics_workspace" "Log-Analytics-Workspace" {
   name                = "Log-Analytics-Workspace"
@@ -57,7 +57,7 @@ The `azapi_resource` accepts a json object of properties that should match the A
 
 A foray into the MSFT docs led me to a page of templates, [this one](https://docs.microsoft.com/en-us/azure/azure-monitor/logs/resource-manager-workspace#collect-custom-logs) being what I was looking for:
 
-```js
+```hcl
 {
   "apiVersion": "2020-08-01",
   "type": "dataSources",
@@ -104,7 +104,7 @@ A foray into the MSFT docs led me to a page of templates, [this one](https://doc
 
 
 A bit of finagling led to this successfully-created resource:
-```js
+```hcl
 resource "azapi_resource" "VarLogMessages-Logs-Ingest" {
   provider  = azapi
   type      = "Microsoft.OperationalInsights/workspaces/dataSources@2020-08-01" # grabbed this from template's API version
@@ -158,7 +158,7 @@ az vmss extension image list -p Microsoft.Azure.Monitoring.DependencyAgent -n De
 
 gives us
 
-```js
+```hcl
 [
   {
     "name": "DependencyAgentLinux",
@@ -177,7 +177,7 @@ az vmss extension image list -p Microsoft.EnterpriseCloud.Monitoring -n OMSAgent
 
 gives
 
-```js
+```hcl
 [
   {
     "name": "OmsAgentForLinux",
@@ -189,7 +189,7 @@ gives
 
 So we can utilize the `azurerm_virtual_machine_scale_set_extension` resource for the agents, specifying those versions:
 
-```js
+```hcl
 resource "azurerm_virtual_machine_scale_set_extension" "Logs-Monitoring-Agent" {
   virtual_machine_scale_set_id = azurerm_linux_virtual_machine_scale_set.Logs-Scale-Set.id
   auto_upgrade_minor_version   = true
