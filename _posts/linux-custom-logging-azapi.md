@@ -3,8 +3,14 @@ title: 'Linux VM Custom Logs with Terraform and AzApi'
 description: Ive been doing a lot of work recently on the linux side of ...'
 date: '2022-04-26'
 modified_date: '2022-04-26'
-image: /assets/images/posts/ac-unit.jpg
+image: /assets/images/posts/custom-log.jpeg
 ---
+
+![Sweet Custom Logging](/assets/images/posts/custom-log.jpeg)
+_Thanks to Zachary Kyra-Derksen for making this [photo](https://unsplash.com/photos/ajqDp29Pz7M?utm_source=twitter&utm_medium=referral&utm_content=photos-page-share) available freely on [unsplash](www.unsplash.com) 🎁_
+
+I am in <span style="font-family:Papyrus; font-size:4em;">LOVE!</span>
+
 
 I've been doing a lot of work recently on the linux side of our product's infrastructure, which consists of a few Azure VMs and VM Scale Sets.
 
