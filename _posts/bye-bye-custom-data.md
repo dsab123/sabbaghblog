@@ -11,15 +11,15 @@ _Thanks to Junseong Lee for making this [photo](https://unsplash.com/photos/v_WL
 
 Have you ever used the `custom_data` parameter on a VM? Terraform offers it to do some basic configuration on a VM right after it's provisioned.
 
-It's a weird offering, to be sure, because terraform doesn't market itself as a provisioning tool. See [this joint presentation by HashiCorp and Ansible employees](https://www.hashicorp.com/resources/ansible-terraform-better-together), where the speakers encourage you to use both.
+It's a weird offering, to be sure, because terraform doesn't market itself as a configuration tool. See [this joint presentation by HashiCorp and Ansible employees](https://www.hashicorp.com/resources/ansible-terraform-better-together), where the presenters encourage you to use both.
 
 Lately, I've been working through some configuration issues in our architecture. The solution involved moving away from `custom_data`. 
 
 I did not move to Ansible, though.
 
-Rather than involve yet another tool, I discovered that terraform gives me what I want via the [`extension` resource](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_machine_extension) in AzureRM. For our use case, it provides enough explicit provisioning that I don't need to bog down our arch just yet.
+Rather than involve yet another tool, I discovered that terraform gives me what I want via the [`virtual_machine_extension` resource](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_machine_extension) in AzureRM. For our use case, it provides enough explicit configuration that I don't need to lay down Ansible on top of it just yet.
 
-I thought extensions were only for plugin-type things you needed to [add to a VM to get logging working](link to custom logging post), for example. But apparently you can run any kinda code in an extension.
+I thought extensions were only for plugin-type things you needed to [add to a VM to get logging working](https://www.sabbagh.blog/posts/linux-custom-logging-azapi/), for example. But apparently you can run any kinda code in an extension.
 
 One of the benefits of an explicit extension like this is that you can use it to synchronize asynchronous operations, much like Javascript's `async` and  `await`. The magic is in the `depends_on`; I can create an explicit `depends_on` relationships between different resources. If I can abstract a configuration script via a resource, i.e. as an `extension`, I can _synchronize_ the order of extensions across multiple VMs.
 
