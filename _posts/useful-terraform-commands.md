@@ -24,4 +24,19 @@ This comes in handy when removing nested Azure resources, as child elements have
 
 ------
 
+## Remove a resource by fully-qualified name
+
+To remove a specific resource, you can do:
+
+```hcl
+terraform destroy -target RESOURCE_TYPE.NAME
+```
+
+Note that the `RESOURCE_TYPE` must be fully-qualified,  i.e.
+```
+terraform destroy -target azurerm_storage_blob.blob_for_bob
+```
+
+------
+
 More to come as I find them!
