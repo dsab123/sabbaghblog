@@ -83,4 +83,8 @@ Well, with that wrinkle ironed out (or at least ironed over) the last step is to
 
 Voila! You can run a `npm run test` or `npm run test:watch` and you should see your tests run with success.
 
-I'll add another post next week with how I used Jest to mock out a database and some Observables to test our interface to Cosmos DB.
+Here's the output of running the tests:
+
+![Jest wee](/assets/images/posts/jest-output.png)
+
+I'll add another post sometime with how I used Jest to mock out a database and some RxJS Observables to test our interface to Cosmos DB.
