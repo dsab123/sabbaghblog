@@ -17,6 +17,7 @@ type IPostProps = {
   description: string;
   date: string;
   modified_date: string;
+  tags?: string;
   image?: string;
   content: string;
 };
@@ -38,8 +39,11 @@ const DisplayPost = (props: IPostProps) => (
     <h1 className="text-center font-bold text-3xl text-gray-900">
       {props.title}
     </h1>
-    <div className="text-center text-sm mb-8">
+    <div className="text-center text-sm mb-3">
       {format(new Date(props.date), 'LLLL d, yyyy')}
+    </div>
+    <div className="text-center text-sm mb-6">
+      <p>tagged: {props.tags}</p>
     </div>
 
     <Content>
@@ -72,6 +76,7 @@ export const getStaticProps: GetStaticProps<IPostProps, IPostUrl> = async ({
     'description',
     'date',
     'modified_date',
+    'tags',
     'image',
     'content',
     'slug',
@@ -84,6 +89,7 @@ export const getStaticProps: GetStaticProps<IPostProps, IPostUrl> = async ({
       description: post.description,
       date: post.date,
       modified_date: post.modified_date,
+      tags: post.tags,
       image: post.image,
       content,
     },
