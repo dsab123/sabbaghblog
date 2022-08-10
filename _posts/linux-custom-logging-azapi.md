@@ -4,6 +4,7 @@ description: Ive been doing a lot of work recently on the linux side of ...'
 date: '2022-04-26'
 modified_date: '2022-04-26'
 image: /assets/images/posts/custom-log.jpeg
+tags: 'azapi, terraform'
 ---
 
 ![Sweet Custom Logging](/assets/images/posts/custom-log.jpeg)

@@ -4,6 +4,7 @@ description: Here's a running list of terraform  ...'
 date: '2022-04-29'
 modified_date: '2022-04-29'
 image: /assets/images/posts/reminder.jpeg
+tags: 'terraform'
 ---
 
 ![reminder](/assets/images/posts/reminder.jpeg) _Thanks to @absolutvision for making this [photo](https://unsplash.com/photos/82TpEld0_e4?utm_source=twitter&utm_medium=referral&utm_content=creditShareLink ) available freely on [unsplash](www.unsplash.com) 🎁_ 

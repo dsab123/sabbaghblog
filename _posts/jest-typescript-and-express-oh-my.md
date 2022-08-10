@@ -4,6 +4,7 @@ description: One small problem - no unit tests.'
 date: '2022-07-15'
 modified_date: '2022-07-15'
 image: /assets/images/posts/joker.png
+tags: 'typescript, jest, unit testing'
 ---
 
 ![Jest is fun but also somewhat terrifying](/assets/images/posts/joker.png)

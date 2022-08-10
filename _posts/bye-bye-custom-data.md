@@ -4,6 +4,7 @@ description: Have you ever used custom_data?'
 date: '2022-05-10'
 modified_date: '2022-05-10'
 image: /assets/images/posts/goodbye.jpeg
+tags: 'terraform, azure'
 ---
 
 ![Goodbye, custom_data](/assets/images/posts/goodbye.jpeg)
