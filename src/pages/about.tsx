@@ -35,7 +35,7 @@ const About = () => (
       <h3>Certifications and Such</h3>
       {/* https://www.credly.com/badges/2f65d3b4-de69-48b4-b7f9-2d9a1f1ad4c6/public_url */}
       <Link href="https://www.credly.com/badges/2f65d3b4-de69-48b4-b7f9-2d9a1f1ad4c6/public_url">
-        <a target="_blank" style={{display: 'flex', flexDirection: 'column', maxWidth: 125, maxHeight: 125, textDecoration: 'none' }}>
+        <a target="_blank" style={{display: 'flex', flexDirection: 'column', maxWidth: 100, maxHeight: 125, textDecoration: 'none' }}>
         <Image
           src="/assets/images/microsoft-certified-azure-fundamentals.png"
           alt="Azure Fundamentals Badge"
