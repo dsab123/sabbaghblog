@@ -11,3 +11,13 @@ a:hover {
 @tailwind components;
 
 @tailwind utilities;
+
+.titleContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.faceImage {
+  height: 100px;
+  width: 100px;
+}

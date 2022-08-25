@@ -16,11 +16,12 @@ const Main = (props: IMainProps) => (
 
     <div className="max-w-screen-md mx-auto">
       <div className="border-b border-gray-300">
-        <div className="pt-16 pb-8">
-          <div className="font-semibold text-3xl text-gray-900">
-            {AppConfig.title}
-          </div>
-          <div className="text-xl">{AppConfig.description}</div>
+        <div className="titleContent pt-16 pb-8">
+          <img className="faceImage" src="/assets/images/face.png"></img>
+            <div className="font-semibold text-3xl text-gray-900">
+              {AppConfig.title}
+            </div>
+            <div className="text-xl">{AppConfig.description}</div>
         </div>
         <div>
           <Navbar>
