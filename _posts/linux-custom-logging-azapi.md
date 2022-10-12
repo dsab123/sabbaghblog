@@ -1,6 +1,6 @@
 ---
-title: 'Linux VM Custom Logs with Terraform and AzApi'
-description: Ive been doing a lot of work recently on the linux side of ...'
+title: Linux VM Custom Logs with Terraform and AzApi
+description: Ive been doing a lot of work recently on the linux side of life
 date: '2022-04-26'
 modified_date: '2022-04-26'
 image: /assets/images/posts/custom-log.jpeg

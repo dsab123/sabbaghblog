@@ -1,6 +1,6 @@
 ---
-title: 'Query Function Logs outside of your customer's subscription'
-description: If you're doing IaaC work, you'll need this.'
+title: Query Function Logs outside of your customer's subscription
+description: If you're doing IaaC work, you'll need this
 date: '2022-09-23'
 modified_date: '2022-09-23'
 image: /assets/images/posts/rubix-hex.jpeg

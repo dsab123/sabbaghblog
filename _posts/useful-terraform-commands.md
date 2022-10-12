@@ -1,6 +1,6 @@
 ---
-title: 'Useful Terraform Things'
-description: Here's a running list of terraform  ...'
+title: Useful Terraform Things
+description: Here's a running list of terraform commands
 date: '2022-04-29'
 modified_date: '2022-04-29'
 image: /assets/images/posts/reminder.jpeg

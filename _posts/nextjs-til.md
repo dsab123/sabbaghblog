@@ -1,6 +1,6 @@
 ---
-title: 'NextJS TIL (updated regularly)'
-description: 'This is a collection of TILs for NextJS.'
+title: NextJS TIL (updated regularly)
+description: This is a collection of TILs for NextJS
 date: '2022-08-23'
 modified_date: '2022-08-23'
 image: /assets/images/posts/nextjs.png

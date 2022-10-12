@@ -1,6 +1,6 @@
 ---
-title: 'Typescript, Jest and Express - Oh my!'
-description: One small problem - no unit tests.'
+title: Typescript, Jest and Express - Oh my!
+description: One small problem - no unit tests
 date: '2022-07-15'
 modified_date: '2022-07-15'
 image: /assets/images/posts/joker.png

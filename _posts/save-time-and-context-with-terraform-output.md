@@ -1,6 +1,6 @@
 ---
-title: 'Save Context and Time with terraform output'
-description: Context Switching is hard for computers; it's also hard for people.'
+title: Save Context and Time with terraform output
+description: Context Switching is hard for computers; it's also hard for people.
 date: '2022-05-27'
 modified_date: '2022-05-27'
 image: /assets/images/posts/see-world.jpeg

@@ -1,6 +1,6 @@
 ---
-title: 'Avoid Buildspec Commit Barf'
-description: 'Has this been you when tweaking build settings?'
+title: Avoid Buildspec Commit Barf
+description: Has this been you when tweaking build settings?
 date: '2022-08-22'
 modified_date: '2022-08-22'
 image: /assets/images/posts/commit-barg.png
