@@ -56,7 +56,7 @@ Some notes about this setup:
 - the sibling-level relationship between `customer-template` and `customer-X` allowed for the module paths to be the same. Module mapping was not a headache here. It was quite nice.
 - I `apply`and `destroy` rather regularly, and did not want to slow down our repo by checking in my ephemeral subscription work, so I only checked in actual customer data. The test customers' directories existed only on my machine.
 
-I kept a running task in Trello to research multitenancy with terraform, adding notes as I found products suitable to our use case. env0 was a quick find and seemed interesting.
+I kept a running task in Trello to research multitenancy with terraform, adding notes as I found products suitable to our use case. [env0](https://www.env0.com) was a quick find and seemed interesting.
 
 Fast forward a few months - we have a few customers, which are being managed with the above framework. All is going well.
 
@@ -86,7 +86,7 @@ And we did not want to end up like this two-member team:
 
 ![env0 logo](/assets/images/posts/env0.png)
 
-By this point I had researched env0, Terraform Cloud and Spacelift. These along with a few others are the head TaCOS out there.
+By this point I had researched [env0](https://www.env0.com), Terraform Cloud and Spacelift. These along with a few others are the head TaCOS out there.
 
 I booked a demo with Kevin from env0. It went really well. Kevin was receptive to the unusual nature of our terraform needs, and we conspired about how to make env0 work for us. Super cool guy!
 
