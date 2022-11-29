@@ -78,6 +78,9 @@ I checked out my notes on that multitenancy task and remembered my research on e
 
 And we did not want to end up like this two-member team:
 
+![No bueno](/assets/images/two-person-team.png)
+
+
 
 ## The env0 TaCO 🌮 
 
