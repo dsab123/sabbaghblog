@@ -37,6 +37,8 @@ _Thanks to Hulki Okan Tabak for making this [photo](https://unsplash.com/photos/
 • Obtained Azure Developer Associate (Az-204) cert ✓
 
 ### 10/2022
+• discovered [crucial bug in one of our apps](/posts/running-list-of-bugs/) - we were storing sensitive info in local storage!
+
 • Onboarded new team member
 
 ### 11/2022
