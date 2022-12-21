@@ -27,7 +27,7 @@ const Main = (props: IMainProps) => (
           <Navbar>
             <li className="mr-6">
               <Link href="/">
-                <a>Home</a>
+                <a>Home (Blagh)</a>
               </Link>
             </li>
             <li className="mr-6">
