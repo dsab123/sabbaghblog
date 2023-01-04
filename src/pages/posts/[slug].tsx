@@ -41,6 +41,7 @@ const DisplayPost = (props: IPostProps) => (
     </h1>
     <div className="text-center text-sm mb-3">
       {format(new Date(props.date), 'LLLL d, yyyy')}
+      {props.modified_date !== props.date ? ", updated " + format(new Date(props.modified_date), 'LLLL d, yyyy') : '' }
     </div>
     <div className="text-center text-sm mb-6">
       <p>tagged: {props.tags}</p>
