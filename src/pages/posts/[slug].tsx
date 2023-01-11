@@ -6,7 +6,8 @@ import { Content } from '../../content/Content';
 import { Meta } from '../../layout/Meta';
 import { Main } from '../../templates/Main';
 import { getAllPosts, getPostBySlug } from '../../utils/Content';
-import { markdownToHtml } from '../../utils/Markdown';
+import { serialize } from 'next-mdx-remote/serialize';
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 
 type IPostUrl = {
   slug: string;
@@ -19,7 +20,7 @@ type IPostProps = {
   modified_date: string;
   tags?: string;
   image?: string;
-  content: string;
+  content: MDXRemoteSerializeResult;
 };
 
 const DisplayPost = (props: IPostProps) => (
@@ -48,10 +49,7 @@ const DisplayPost = (props: IPostProps) => (
     </div>
 
     <Content>
-      <div
-        // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{ __html: props.content }}
-      />
+      <MDXRemote {...props?.content}></MDXRemote>
     </Content>
   </Main>
 );
@@ -82,7 +80,8 @@ export const getStaticProps: GetStaticProps<IPostProps, IPostUrl> = async ({
     'content',
     'slug',
   ]);
-  const content = await markdownToHtml(post.content || '');
+
+  const content = await serialize(post.content || '');
 
   return {
     props: {
