@@ -95,4 +95,14 @@ resource "tls_private_key" "One_Key" {
 
 ------
 
+## Allow for different platforms to touch the same workspace
+
+This command will tell your lock file (`.terraform.lock.hcl`) to store the hashes for more than just your platform:
+
+```hcl
+terraform providers lock -platform=windows_amd64 -platform=darwin_amd64
+```
+
+[This github thread](https://github.com/hashicorp/terraform/issues/28041#issue-828274120) talks about it in more detail.
+
 More to come as I find them!
