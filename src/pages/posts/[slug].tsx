@@ -1,8 +1,6 @@
 
 import { format } from 'date-fns';
 import { GetStaticPaths, GetStaticProps } from 'next';
-
-import { Content } from '../../content/Content';
 import { Meta } from '../../layout/Meta';
 import { Main } from '../../templates/Main';
 import { getAllPosts, getPostBySlug } from '../../utils/Content';
@@ -51,11 +49,10 @@ const DisplayPost = (props: IPostProps) => (
       <p>tagged: {props.tags}</p>
     </div>
 
-    {/* <Content> */}
     <div className="prose">
       <MDXRemote {...props?.content}></MDXRemote>
-      </div>
-    {/* </Content> */}
+    </div>
+
   </Main>
 );
 
