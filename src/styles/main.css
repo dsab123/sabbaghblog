@@ -10,6 +10,15 @@ a:hover {
 
 @tailwind components;
 
+.prose p {
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
+}
+
+.prose img {
+  margin-bottom: 0em;
+}
+
 @tailwind utilities;
 
 .titleContent {
@@ -20,4 +29,55 @@ a:hover {
 .faceImage {
   height: 100px;
   width: 100px;
+}
+
+/* this class is used in markdown content, so needs to be here */
+.postImageContainer {
+  text-align: center;
+}
+
+.postImage {
+  width: 28em;
+  height: auto;
+  transition: transform .2s;
+}
+
+.postImage:hover {
+  transform: scale(1.03) rotate(2deg);
+}
+
+.smallPostImage {
+  width: 12em;
+  height: auto;
+  transition: transform .2s; 
+}
+
+.smallPostImage:hover {
+  transform: scale(1.03) rotate(2deg);
+}
+
+.nonMovingPostimage, .portraitNonMovingPostImage {
+  width: 28em;
+  height: auto;
+}
+
+.wideNonMovingPostimage {
+  width: 36em;
+  height: auto;
+}
+
+.captionText {
+  text-align: center;
+  font-size: 17px;
+  font-style: italic;
+  margin-top: 0px;
+  color: var(--caption-color);
+}
+
+.centeredText {
+  text-align: center;
+}
+
+.rightAlignedText {
+  text-align: right;
 }

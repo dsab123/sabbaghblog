@@ -61,7 +61,7 @@ I kept a running task in Trello to research multitenancy with terraform, adding 
 Fast forward a few months - we have a few customers, which are being managed with the above framework. All is going well.
 
 ## Paradise BaSH-Land Lost - Windows Machine 💻
-
+<a id="windows-machine-bash"></a>
 Our team got approval for one more hire, and so we hired another developer. He is awesome and working with him has been quite the BaSH.
 
 I mean that in a literal sense, because this architecture flopped on his Windows machine. We eventually figured them all out, of course, but the time spent to do so was soul-shriveling.
@@ -98,6 +98,7 @@ As for the others:
 
 My list of requirements for our TaCO were as follows:
 
+
 - [x] basic sanity test POC
 - created a simple terraform project with a resource group, a VM and a storage bucket
 - [x] POC Works for multiple customers (environments in env0 parlance)
@@ -114,6 +115,7 @@ My list of requirements for our TaCO were as follows:
 - we store all of our state in an azure backend, but will test out the env0 backend option as another option
 - [x] Compatible with AWS and CloudFormation
 - [ ] Allows for additional custom terraform for different customers (super important maybe?)
+
 
 The last bullet is a bit of a future idea: what do we do if a customer wants some extra stuff in their instance? The plan until now was to create an `extras.tf` in their `/customer-X` directory and add the new stuff in there. But this seems like an industry anti-pattern, as I haven't seen it anywhere else. 
 

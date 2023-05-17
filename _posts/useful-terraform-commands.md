@@ -17,7 +17,7 @@ Hope they are helpful to ya.
 
 If you want to remove all resources that match a certain pattern, here's a way to do it.
 
-```hcl
+```bash
 terraform state rm $(terraform state list | grep <your-pattern>)
 ```
 
@@ -29,7 +29,7 @@ This comes in handy when removing nested Azure resources, as child elements have
 
 To remove a specific resource, you can do:
 
-```hcl
+```bash
 terraform destroy -target RESOURCE_TYPE.NAME
 ```
 
@@ -44,13 +44,13 @@ terraform destroy -target azurerm_storage_blob.blob_for_bob
 
 To show a resource's detailed information, first find the fully-qualified name:
 
-```hcl
+```bash
 terraform state list | grep -i tls
 ```
 
 You'll get back soemthing like:
 
-```hcl
+```bash
 tls_private_key.One_Key
 tls_private_key.Two_Key
 tls_private_key.Red_Key
@@ -58,13 +58,13 @@ tls_private_key.Blue_Key
 ```
 
 Then, simply apply the `show` subcommand to it:
-```hcl
+```bash
 terraform state show tls_private_key.One_Key
 ```
 
 Which will show you everything on that resource:
 
-```hcl
+```bash
 # tls_private_key.One_Key:
 resource "tls_private_key" "One_Key" {
     algorithm                     = "RSA"
@@ -99,7 +99,7 @@ resource "tls_private_key" "One_Key" {
 
 This command will tell your lock file (`.terraform.lock.hcl`) to store the hashes for more than just your platform:
 
-```hcl
+```bash
 terraform providers lock -platform=windows_amd64 -platform=darwin_amd64
 ```
 

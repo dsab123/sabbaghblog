@@ -13,7 +13,7 @@ _Thanks to Zachary Kyra-Derksen for making this [photo](https://unsplash.com/pho
 If you feel bad about a production bug you've created, don't worry. I have too. Here is a running list of bugs I've created and/or squashed. 
 
 ---
-## 🐛 - Got too into ES6, forgot production app did not have Babel
+## 🐛 Got too into ES6, forgot production app did not have Babel
 [x] Created and/or [ ] Squashed
 
 _c. 2016_
@@ -29,7 +29,7 @@ _Lessons Learned_ :
 • 👉 Do not deploy when Senór is not there
 
 ---
-## 🐛 - Copied environment from server's `systemd` into local machine, kept setting `NODE_ENV='production'` and not compiling dev dependencies
+## 🐛 Copied environment from server to local, silent `NODE_ENV='production'` killed my dev deps
 
 [x] Created and/or [ ] Squashed
 
@@ -37,14 +37,19 @@ _c. 2022_
 
 I mostly work alone these days. And when you're a team lead of a team of one, I feel that you're authorized to take certain 'shortcuts'. Sometimes I commit directly to the master branch. Well, one of the shortcuts went too far. And it was born _while_ debugging.
 
+
 I had to connect my local machine to our server's Azure subscription to debug an issue. To do this I copied the server's `systemd` config file (for the whole app ran on a VM) into my local to get all the environment variables - connection strings, guids, etc. Well, I inadvertently copied the following line:
+
 
 ```bash
 NODE_ENV=production
 ```
+
 So I was setting NODE_ENV on my local to `production` . Ouch!
 
+
 I'm sure this caused me a whole bunch of issues, like "why is this if statement not evaluating correctly", but the cake goes to `npm run build`, which in production deletes all of your `devDependencies` ([npm docs for reference](https://docs.npmjs.com/cli/v8/commands/npm-install)) . This was rough for my typescript insecurities because all of the `@types`  packages are, you guessed it, in `devDependencies`. So when I'd run a build I'd get eslint errors about a standard configuration not being defined. I didn't know what to do except to blow the whole root of the repo away and pull it again. Two months this went on.
+
 
 _Lessons Learned_ :
 
@@ -54,7 +59,7 @@ _Lessons Learned_ :
 
 
 ---
-## 🐛 - Discovered we set user role in local storage, no guard against changing it via devtools
+## 🐛 Discovered we set user role in local storage, no guard against changing it via devtools
 
 [ ] Created and/or [x] Squashed
 

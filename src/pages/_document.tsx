@@ -7,6 +7,9 @@ class MyDocument extends Document {
   render() {
     return (
       <Html lang={AppConfig.locale}>
+        {/* <Head> Daniel doesn't remember what this is?
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark.min.css" />
+        </Head> */}
         <Head />
         <body>
           <Main />

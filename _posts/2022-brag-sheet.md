@@ -10,16 +10,18 @@ tags: 'brag, year'
 ![Strut like that chicken](/assets/images/posts/chicken-strut.jpeg)
 _Thanks to Hulki Okan Tabak for making this [photo](https://unsplash.com/photos/FoLNgd4v5mA) available freely on [unsplash](www.unsplash.com) 🎁_
 
-## What did I do this year?
 
-### Overall
+# What did I do this year?
+## _Overall_
 • Migrated legacy Azure terraform IaC workload into a decentralized multi-tenant product
 
 • Managed backlog with Product Manager
 
+• Gave multiple demos of product to customers
+
 ### 4/2022
 
-• Started this blog 😎 
+• Started this blog 😎
 
 • Established full-length CI pipeline using AWS CodeCommit, CodeBuild and Lambda to deploy artifacts to Azure
 

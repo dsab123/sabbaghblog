@@ -18,7 +18,8 @@ One pain point has been swiping to the portal for all the IP addresses I need fo
 With `terraform output`, however, I need fret not. I can just output the IP addresses and terraform will spit them out for me.
 
 In `outputs.tf`, I specify the outputs like this:
-```hcl
+
+```bash
 output "IP-Addresses" {
   value = {
     Jumpbox-Private-IP = azurerm_linux_virtual_machine.Combine-Linux-Jumpbox.private_ip_address,
@@ -30,11 +31,13 @@ output "IP-Addresses" {
 
 I also constructed an SSH command so that I don't have to type this bad boy in manually:
 
-```
+```bash
 Jumpbox-Login = "ssh -i ${var.customer_name}-jumpbox user@${module.customer-vcn.IP-Addresses.Jumpbox-Public-IP}"
 ```
 
 `terraform output` in the terminal will print these out. 
+
+
 
 
 Sweet, you've saved 10 seconds. What are you going to do with all that time?

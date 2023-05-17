@@ -8,6 +8,9 @@ import { Main } from '../../templates/Main';
 import { getAllPosts, getPostBySlug } from '../../utils/Content';
 import { serialize } from 'next-mdx-remote/serialize';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
+import remarkGfm from 'remark-gfm'
+import rehypeHighlight from 'rehype-highlight'
+import rehypePrism from '@mapbox/rehype-prism';
 
 type IPostUrl = {
   slug: string;
@@ -48,9 +51,11 @@ const DisplayPost = (props: IPostProps) => (
       <p>tagged: {props.tags}</p>
     </div>
 
-    <Content>
+    {/* <Content> */}
+    <div className="prose">
       <MDXRemote {...props?.content}></MDXRemote>
-    </Content>
+      </div>
+    {/* </Content> */}
   </Main>
 );
 
@@ -81,7 +86,13 @@ export const getStaticProps: GetStaticProps<IPostProps, IPostUrl> = async ({
     'slug',
   ]);
 
-  const content = await serialize(post.content || '');
+
+  const content = await serialize(post.content || '', {
+    mdxOptions: {
+    remarkPlugins: [remarkGfm],
+    rehypePlugins: [rehypeHighlight, rehypePrism],
+    format: 'mdx',
+  },});
 
   return {
     props: {

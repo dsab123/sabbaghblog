@@ -32,7 +32,7 @@ In our example, the restricted VM needs to pull some installers and other assets
 
 But if I define the extension for the proxy configuration explicitly, like so:
 
-```hcl
+```bash
 resource "azurerm_virtual_machine_extension" "Proxy-VM-Configuration" {
   name                 = "Proxy-VM-Configuration-Extension"
   virtual_machine_id   = azurerm_linux_virtual_machine.Proxy-VM.id
@@ -48,7 +48,7 @@ resource "azurerm_virtual_machine_extension" "Proxy-VM-Configuration" {
 
 then I can make the configure script for the restricted VM _depend on_ the proxy VM:
 
-```hcl
+```
 resource "azurerm_virtual_machine_extension" "Restricted-VM-Configuration" {
   depends_on = [
     azurerm_virtual_machine_extension.Proxy-VM-Configuration # this here
