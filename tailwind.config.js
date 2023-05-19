@@ -38,6 +38,13 @@ module.exports = {
           900: '#2a4365',
         },
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            maxWidth: '80ch',
+          }
+        }
+      }
     },
   },
   variants: {},
