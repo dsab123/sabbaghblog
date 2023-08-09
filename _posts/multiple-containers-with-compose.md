@@ -139,7 +139,6 @@ Note that the app requires that redis and postgres are already running, hence th
 
 ### Take it to the Cloud 🌥️
 
-
 Since our POC worked locally, it was time to take it to the cloud. Most of our work is in AWS land, so we created an ECR. AWS did a good job of giving us the commands to authenticate to the registry, which was super.
 
 The command to authenticate looks something like:
