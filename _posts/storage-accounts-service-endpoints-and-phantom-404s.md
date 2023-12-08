@@ -8,9 +8,9 @@ tags: 'Azure, Storage Account, terraform'
 ---
 
 TL;DR - Removing the Microsoft.Storage service endpoint from a subnet without removing the subnet's reference in the Storage account makes the account invisible. Oof.
-
+<br />
 So, I ran into this disaster today.
-
+<br />
 We removed the `Microsoft.Storage` service endpoint from a few of our subnets, because we didn't want those subnets to access a certain storage account.
 
 
@@ -32,7 +32,7 @@ resource "azurerm_subnet" "subnet_pls" {
 Suddenly, the storage account disappeared! It did not show up in the Azure portal.
 
 Random fluke, right? Run terraform apply and recreate it.
-
+<br />
 Nope! We got this from terraform: 
 
 ```
@@ -44,7 +44,7 @@ Error: Error retrieving Azure Storage Account "examplestorageaccount": storage.A
   on ../modules/foo-storage/main.tf line 9, in resource "azurerm_storage_account" "storage_account":
    9: resource "azurerm_storage_account" "storage_account" {
 ```
-
+<br />
 And when we checked the terraform state, it showed up as `tainted`:
 
 ```
@@ -64,7 +64,6 @@ What the hell!?
 
 -------
 
-
 After many hours of debugging, we discovered that the storage account still had reference to those subnet_ids:
 
 ```
@@ -83,5 +82,6 @@ resource "azurerm_storage_account" "storageaccountpls" {
 ```
 
 And voíla, it works again.
+<br />
 
 After fixing, I discovered this [github issue](https://github.com/hashicorp/terraform-provider-azurerm/issues/16547) that alludes to a stray network config being the culprit.
