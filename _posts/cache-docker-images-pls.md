@@ -30,3 +30,5 @@ But notice that little word 'upgrading' in the error message above. Upgrading me
 
 
 An alternative that a teammate proposed was pretty simple - **cache the images you use in your builds inside of a container registry!**
+
+That way, you can pull it as many times as you want without hitting the unauthenticated docker threshold.
