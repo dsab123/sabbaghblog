@@ -3,9 +3,13 @@ title: Terraform custom logs in Oracle Cloud
 description: Misleading documentation + Reverse engineering a state file!
 date: '2023-12-20'
 modified_date: '2023-12-20'
-image: /assets/images/posts/taco.jpeg
+image: /assets/images/posts/oracle.jpg
 tags: 'terraform, cloud, OCI'
 ---
+
+
+![Oracle Cloud Logo](/assets/images/posts/oracle.jpg)
+_Thanks to boliviainteligente for making this [photo](https://unsplash.com/photos/logo-eb0DNqbzrNU) available freely on [unsplash](www.unsplash.com) 🎁_
 
 Have you ever reverse-engineered a state file before? A better question might be: _why_ would you ever need to do so? Boy, do I have the use case for you.
 
