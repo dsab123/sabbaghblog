@@ -38,7 +38,61 @@ Oh, what kinda name is `oci_logging_unified_agent_configuration`?
 
 
 Well, whatever. Now we can finally terraform it, since we know what it's named. I'm going to submit a github issue to rename that resource.
+<br />
 
+Extra points if you reverse engineer the state file - you can view the state (which Oracle lets you do), and do some json-to-hcl regexing on the required properties that are actually set. There are a few thousand properties for this resource, which is understandable, but is quite tedious to reproduce by hand from the docs. The resource's state only contains the props you need to set, if you don't mind wading through the state file:
+<br />
+
+```json
+...
+  "sources": [
+    {
+      "channels": [],
+      "name": "pathfinder logs",
+      "parser": [
+        {
+          "delimiter": "",
+          "expression": "",
+          "field_time_key": "",
+          "format": [],
+          "format_firstline": "",
+          "grok_failure_key": "",
+          "grok_name_key": "",
+          "is_estimate_current_event": true,
+          "is_keep_time_key": false,
+          "is_merge_cri_fields": false,
+          "is_null_empty_string": false,
+          "is_support_colonless_ident": false,
+          "is_with_priority": false,
+          "keys": [],
+          "message_format": "",
+          "message_key": "",
+          "multi_line_start_regexp": "",
+          "nested_parser": [],
+          "null_value_pattern": "",
+          "parser_type": "NONE",
+          "patterns": [],
+          "rfc5424time_format": "",
+          "syslog_parser_type": "",
+          "time_format": "",
+          "time_type": "",
+          "timeout_in_milliseconds": 0,
+          "types": {}
+        }
+      ],
+      "paths": [
+        "/var/log/pathfinder/*"
+      ],
+      "source_type": "LOG_TAIL"
+    }
+...
+
+  "mode": "managed",
+  "name": "export_test_2",
+  "provider": "provider[\"registry.terraform.io/hashicorp/oci\"]",
+  "type": "oci_logging_unified_agent_configuration"
+}
+```
 <br />
 ---------
 
