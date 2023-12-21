@@ -24,6 +24,14 @@ type IPostProps = {
   content: MDXRemoteSerializeResult;
 };
 
+const filterOutAttributesIfProjectsPage = (title: string) => {
+  if (title === "Side Projects and Other Niceties") {
+    return false;
+  }
+
+  return true;
+}
+
 const DisplayPost = (props: IPostProps) => (
   <Main
     meta={
@@ -42,11 +50,11 @@ const DisplayPost = (props: IPostProps) => (
       {props.title}
     </h1>
     <div className="text-center text-sm mb-3">
-      {format(new Date(props.date), 'LLLL d, yyyy')}
-      {props.modified_date !== props.date ? ", updated " + format(new Date(props.modified_date), 'LLLL d, yyyy') : '' }
+      {filterOutAttributesIfProjectsPage(props.title) && format(new Date(props.date), 'LLLL d, yyyy')}
+      {filterOutAttributesIfProjectsPage(props.title) && props.modified_date !== props.date ? ", updated " + format(new Date(props.modified_date), 'LLLL d, yyyy') : '' }
     </div>
     <div className="text-center text-sm mb-6">
-      <p>tagged: {props.tags}</p>
+      {filterOutAttributesIfProjectsPage(props.title) && <p>tagged: {props.tags}</p>}
     </div>
 
     <div className="prose">
