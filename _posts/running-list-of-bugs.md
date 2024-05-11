@@ -2,7 +2,7 @@
 title: Running List of Bugs I've Created and/or Squashed
 description: If you feel bad about a production bug you've created, don't worry.
 date: '2022-10-11'
-modified_date: '2022-10-11'
+modified_date: '2024-05-11'
 image: /assets/images/posts/bug.jpeg
 tags: 'Typescript, bugs'
 ---
@@ -29,7 +29,7 @@ _Lessons Learned_ :
 • 👉 Do not deploy when Senór is not there
 
 ---
-## 🐛 Copied environment from server to local, silent `NODE_ENV='production'` killed my dev deps
+## 🐛 Copied environment from server to local, silent `NODE_ENV='production'` killed my dev dependenciess
 
 [x] Created and/or [ ] Squashed
 
@@ -74,4 +74,94 @@ The fix I decided on was pretty simple - md5-hash the role name and id, and add 
 _Lessons Learned_ :
 
 • 👉 don't store sensitive information in localstorage!
+
+
+---
+## 🐛 Initialized array that populated `mat-select` as type `never[]`
+
+[ ] Created and/or [x] Squashed
+
+To be honest here, I am not sure what was going on with this one. The root of the problem was an implicit type declaration that looked like an array initialization.
+
+Here was the offending code:
+
+```ts
+export interface ProviderCredentials {
+  providerId: string
+  supported: CredentialTypes[]
+}
+
+nullProvider = { 
+  providerId: '', 
+  supported: [] 
+}
+
+selectedProviderCredentials: ProviderCredentials = this.nullProvider;
+```
+
+`ProviderCredentials` is defined in another place:
+
+```ts
+export enum CredentialTypes {
+  Tuple,
+  Certificate,
+  Instance,
+  UserConfig
+}
+
+export interface ProviderCredentials {
+  providerId: string
+  supported: CredentialTypes[]
+}
+```
+
+<br />
+
+The `selectedProviderCredentials` was populated from a fetch call at the beginning of the component' lifecycle. Up to that point it was supposed to be empty, hence it was initialized with the `nullProvider`. And the `supported` array populated the options in a `mat-select`.
+
+<br />
+
+If you're conscientous you'll notice that `nullProvider` is _not_ defined as a `ProviderCredentials`, even though in the next line it is set equal to an instance of one. In fact, it is defined as its own type, with `supported` not as a `CredentialTypes[]`, but as a `never[]`.
+
+<br />
+
+For some reason, since the `mat-select` is populated as a `never[]`, its `@ViewChild` correspondent is always undefined. Hence, when the data comes in, the mat-select's value is not set.
+
+<br />
+
+I asked ChatGPT to explain what `never[]` is used for:
+
+> Yes, if TypeScript is inferring the type of the supported array in your nullProvider object as never[], this can indeed be a code smell. The never type in TypeScript is used for values that never occur. When TypeScript infers an array as never[], it generally means that it doesn't expect the array to be used with any values at all—effectively, the array should always remain empty.
+
+<br />
+
+Turns out all we had to do was initialize the `nullProvider` as an implementation of the interface, along with a default value:
+
+```ts
+nullProvider: ProviderCredentials = {
+  providerId: '',
+  supported: [CredentialTypes.Instance]
+}
+```
+
+<br />
+
+Apart from the accidental `never[]`, I can understand the desire to initialize things with empty or null values. But in most cases, the call to hydrate the UI component will return quickly enough that a reasonable default, especially of an enum value which by nature details the acceptable values of a thing, is just fine.
+
+<br />
+
+We could have a conversation about whether `CredentialType` shouldn't be an enum, but that question would open up cans of refactoring I don't have the time for..
+
+
+There's some typescript voodoo here that I'm not understanding fully, but this fixed up our issue.
+
+<br />
+
+_Lessons Learned_ :
+
+• 👉 Remember the difference between initialization and property declaration!
+
+• 👉 If you're going to use types, use types _everywhere_. Failure to do so will fork things up.
+
+• 👉 It's important to remember to reasonable defaults for things; dummy values might work better than empty arrays, at least in the non-React case.
 
