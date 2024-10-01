@@ -76,6 +76,9 @@ Step 4 will be an effort to adapt regular documentation, testing and sometimes a
 ## The Tasking
 
 Steps 1 and 2 will probably only require one task for each. For Step 3, there will be multiple tasks per product, involving cleanup of our AWS account, writing of scripts to do things, and scaffolding of github configuration. I think we'll take these as we go, as each product has varying levels of automation already configured and which we're already used to.
+<br />
+
+Moving the code over will be a good opportunity to add some similarity to each repository. Perhaps we can capture the gist of the move in a shell script and place it in a root-level directory named `config`, for example.
 
 ---
 
