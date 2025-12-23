@@ -2,7 +2,7 @@
 title: Running List of Bugs I've Created and/or Squashed
 description: If you feel bad about a production bug you've created, don't worry.
 date: '2022-10-11'
-modified_date: '2024-05-11'
+modified_date: '2025-12-23'
 image: /assets/images/posts/bug.jpeg
 tags: 'Typescript, bugs'
 ---
@@ -14,7 +14,8 @@ If you feel bad about a production bug you've created, don't worry. I have too. 
 
 ---
 ## 🐛 Got too into ES6, forgot production app did not have Babel
-[x] Created and/or [ ] Squashed
+
+### ❌ Created
 
 _c. 2016_
 
@@ -31,7 +32,7 @@ _Lessons Learned_ :
 ---
 ## 🐛 Copied environment from server to local, silent `NODE_ENV='production'` killed my dev dependenciess
 
-[x] Created and/or [ ] Squashed
+### ❌ Created
 
 _c. 2022_
 
@@ -61,7 +62,9 @@ _Lessons Learned_ :
 ---
 ## 🐛 Discovered we set user role in local storage, no guard against changing it via devtools
 
-[ ] Created and/or [x] Squashed
+### ✅ Squashed
+
+_c. 2023_
 
 One of our apps at work is a dashboard that has different roles. We reserve a super admin role for us to go in and do admin-level things. There are two other, (regular) admin and reader roles. Turns out we stored that user role in local storage. Oof.
 
@@ -77,9 +80,11 @@ _Lessons Learned_ :
 
 
 ---
-## 🐛 Initialized array that populated `mat-select` as type `never[]`
+## 🐛 Initialized array that populated a `mat-select` as type `never[]`
 
-[ ] Created and/or [x] Squashed
+### ✅ Squashed
+
+_c. 2024_
 
 To be honest here, I am not sure what was going on with this one. The root of the problem was an implicit type declaration that looked like an array initialization.
 
@@ -165,3 +170,41 @@ _Lessons Learned_ :
 
 • 👉 It's important to remember to reasonable defaults for things; dummy values might work better than empty arrays, at least in the non-React case.
 
+
+---
+## 🐛 Seeded local dev container with config database records as System Properties
+
+### ❌ Created
+
+_c. 12/2025_
+
+#### Situation
+As tech lead I developed a mostly-helpful mechanism to run an application on top of our infrastructure offering by containerizing it. I had to mangle with a few configs to get it working. The configuration for the app is homegrown and uses a defaults file (literally a file) bundled in the artifact to seed the environment with necessary configs, with which the app could reach out to an external database for more configs. 
+
+I could not figure out why the app couldn't read the file when it was running in a container versus in a non-containerized environment, so I did the next best (worst?) thing - in the bootstrap for the container I pulled the whole configuration database into the environment and seeded the java app with all the configs as system properties:
+
+```
+JAVA_OPTS=$(aws dynamodb scan --table-name "$CONFIGURATION_TABLE" \
+  --output json | \
+  jq -r '.Items[] | "-D" + .parameter_name.S + "=\"" + .parameter_value.S + "\"" ' | \
+  tr '\n' ' ')
+```
+
+#### Action
+I was working on a fun new feature that required some new configs. It seemed to work the first time I got an MVP of it running on my local, but then the caching staled, even after refreshing the cache. 
+
+I was slammed for a whole day on this. I had a feeling it would work on the deployed (non-containerized) environment on the cloud, but needed to know why it was broken on my local. I used OpenAI's Codex to print out the identity hash of the Configuration object instance in two places, but that was not it - the same hash for both when the configs are pulled and when they're retrieved.
+
+Then I saw it - the Configuration's tiered retrieval paths (which I already knew existed, I'd just forgotten it):
+
+```
+1. get config from system property // (-Dconfig=value), if present
+2. get config from cache           // this is where I thought I was getting the config from
+3. ...                             // not relevant
+4. ... 
+```
+
+#### Result
+A footgun for which I have only myself to blame!
+
+Removing the records from the database before running my script to seed the artifact with config fixed this.
