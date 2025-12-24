@@ -40,11 +40,11 @@ const Main = (props: IMainProps) => (
                 GitHub
               </a>
             </li>
-            <li className="mr-6">
+            {/* <li className="mr-6">
               <a href="/posts/projects">
                 Projects
               </a>
-            </li>
+            </li> */}
           </Navbar>
         </div>
       </div>
