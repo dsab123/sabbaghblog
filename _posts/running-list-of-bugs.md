@@ -4,7 +4,7 @@ description: If you feel bad about a production bug you've created, don't worry.
 date: '2022-10-11'
 modified_date: '2025-12-23'
 image: /assets/images/posts/bug.jpeg
-tags: 'Typescript, bugs'
+tags: 'bugs'
 ---
 
 ![This bug is hiding in plain sight, unlike most bugs](/assets/images/posts/bug.jpeg)

@@ -20,7 +20,7 @@ const BlogGallery = (props: IBlogGalleryProps) => (
           </Link>
 
           <div className="text-right">
-            {format(new Date(elt.date), 'LLL d, yyyy')}
+            {format(new Date(elt.modified_date), 'LLL d, yyyy')}
           </div>
         </li>
       ))}

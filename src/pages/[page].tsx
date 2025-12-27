@@ -41,7 +41,7 @@ export const getStaticProps: GetStaticProps<
   IBlogGalleryProps,
   IPageUrl
 > = async ({ params }) => {
-  const posts = getAllPosts(['title', 'date', 'slug', 'tags']); // TODO DANIEL add tags to each post
+  const posts = getAllPosts(['title', 'modified_date', 'date', 'slug', 'tags']); // TODO DANIEL add tags to each post
 
   const pages = convertTo2D(posts, AppConfig.pagination_size);
   const currentPage = Number(params!.page.replace('page', ''));
