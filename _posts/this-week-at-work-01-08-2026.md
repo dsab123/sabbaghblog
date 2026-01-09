@@ -8,7 +8,8 @@ tags: 'work, life, weekly'
 ---
 
 ![Strut like that chicken](/assets/images/posts/this-week.jpg)
-_Thanks to Hulki Jazmin Quaynor for making this [photo](https://unsplash.com/photos/closeup-photo-of-ballpoint-pen-near-camera-18mUXUS8ksI) available freely on [unsplash](www.unsplash.com) 🎁_
+
+_Thanks to Jazmin Quaynor for making this [photo](https://unsplash.com/photos/closeup-photo-of-ballpoint-pen-near-camera-18mUXUS8ksI) available freely on [unsplash](www.unsplash.com) 🎁_
 
 
 Our CTO and Product Owner has been away for two weeks, and this week was his last week out. And due to reduced customer support load I've been able to knock out a lot of items on the ol' wishlist. Here are some of the highlights I was able to accomplish this week.
