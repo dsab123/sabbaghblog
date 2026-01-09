@@ -36,6 +36,7 @@ Managed onboarding of 2 permanent additions to the team (one of them family!), a
 Established well-attended working sessions to talk tech, do demos or brown bags.
 
 ## Kubernetifed our Product
+<a id="kubernetified-product"></a>
 
 To round out the year which began with containerization, I managed to kubernetify that compute portion of our product for that enterprise customer, complete with helm charts and a [how-to](https://public-docs.sequoiacombine.io/Combine-AWS/tutorials/operations/how-to-configure-combine-on-eks).
 

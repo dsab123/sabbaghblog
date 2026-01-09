@@ -1,0 +1,56 @@
+{
+    "enexSources": [
+       "/Users/daniel/Desktop/weekly.enex"
+       ],
+    "outputDir": "/Users/daniel/workspace/sabbaghblog/_posts",
+    "isZettelkastenNeeded": false,
+    "useZettelIdAsFilename": false,
+    "plainTextNotesOnly": false,
+    "skipWebClips": true,
+    "useHashTags": true,
+    "outputFormat": "StandardMD",
+    "taskOutputFormat": "StandardMD",
+    "urlEncodeFileNamesAndLinks": false,
+    "skipEnexFileNameFromOutputPath": false,
+    "monospaceIsCodeBlock": false,
+    "keepMDCharactersOfENNotes": false,
+    "keepOriginalAmountOfNewlines": false,
+    "addExtensionToInternalLinks": true,
+    "trimStartingTabs": false,
+    "convertPlainHtmlNewlines": false,
+    "encryptionPasswords": [],
+    "nestedTags": {
+      "separatorInEN": "_",
+      "replaceSeparatorWith": "/",
+      "replaceSpaceWith": "-"
+   },
+   "replacementCharacterMap": {
+      "<": "_",
+      ">": "_",
+      ":": "_",
+      "\"": "_",
+      "/": "_",
+      "\\": "_", 
+      "|": "_",
+      "?": "_",
+      "*": "_"
+    },
+   "globalReplacementSettings": [],
+   "resourcesDir": "resources",
+   "turndownOptions": {
+      "headingStyle": "atx"
+   },
+   "dateFormat": "YYYY-MM-DD",
+   "haveEnexLevelResources": true,
+   "haveGlobalResources": false,
+   "useUniqueUnknownFileNames": false,
+   "useLevenshteinForLinks": false,
+   "convertColorsToMDHighlight": false,
+    "logseqSettings":{
+        "journalNotes": false
+    },
+   "obsidianSettings": {
+      "omitLinkDisplayName": false
+    }
+
+}
