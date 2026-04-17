@@ -8,6 +8,7 @@ import { serialize } from 'next-mdx-remote/serialize';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import remarkGfm from 'remark-gfm'
 import rehypeHighlight from 'rehype-highlight'
+// @ts-ignore - @types/mapbox__rehype-prism is stale for unified v11
 import rehypePrism from '@mapbox/rehype-prism';
 
 type IPostUrl = {
