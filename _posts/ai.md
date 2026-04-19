@@ -18,6 +18,6 @@ compute portion of our product](/posts/2025-brag-sheet#kubernetified-product).
 
 Problem is, sometimes I struggle with consistency and discipline. From my desire to [blog once through the year](/posts/this-week-at-work-01-08-2026), to my resolution to [get some cloud certifications](/posts/gonna-get-some-cloud-certifications), it's clear I am weak in this area at times.
 
-But, wait. I _do_ some things consistently - I take care of my family, spend time in Scripture meditation and prayer, and serve at [my church](https://acropc.org). So, you could say I'm doing all the most important things consistently. I also try to read a lot, mostly in the areas of theology and fiction.
+But, wait. I _do_ some things consistently - I take care of my family, spend time in Scripture meditation and prayer, and serve at [my church](https://arcopc.org). So, you could say I'm doing all the most important things consistently. I also try to read a lot, mostly in the areas of theology and fiction.
 
 How do I fit more things in when time is a zero-sum game? I don't know.. but there's probably a book about this. I should find one and read about it.
