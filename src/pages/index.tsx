@@ -1,5 +1,4 @@
-
-import { GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
 
 import { BlogGallery, IBlogGalleryProps } from '../blog/BlogGallery';
 import { Meta } from '../layout/Meta';
@@ -21,7 +20,7 @@ const Index = (props: IBlogGalleryProps) => (
   </Main>
 );
 
-export const getStaticProps: GetStaticProps<IBlogGalleryProps> = async () => {
+export const getServerSideProps: GetServerSideProps<IBlogGalleryProps> = async () => {
   const posts = getAllPosts(['title', 'modified_date', 'date', 'slug']);
   const pagination: IPaginationProps = {};
 

@@ -1,11 +1,137 @@
 @tailwind base;
 
+/* ---------- Theme tokens ---------- */
+
+/* Default — the original gray/blue look, preserved */
+:root,
+:root[data-theme='default'] {
+  --color-bg: #ffffff;
+  --color-surface: #f7fafc;
+  --color-text: #4a5568;
+  --color-text-muted: #718096;
+  --color-heading: #1a202c;
+  --color-border: #e2e8f0;
+  --color-link: #2b6cb0;
+  --color-link-hover: #2a4365;
+  --color-accent: #2b6cb0;
+
+  --font-heading: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --radius: 0.25rem;
+
+  --link-decoration-hover: underline;
+  --heading-letter-spacing: normal;
+  --heading-text-shadow: none;
+  --body-background-image: none;
+  --selection-bg: #2b6cb0;
+  --selection-fg: #ffffff;
+}
+
+/* Syntax — bright, bold, a bit unhinged. Electric neons against a deep purple night. */
+:root[data-theme='syntax'] {
+  --color-bg: #140029;
+  --color-surface: #24104a;
+  --color-text: #f2e7ff;
+  --color-text-muted: #b39ddb;
+  --color-heading: #ffe14f;
+  --color-border: #ff3ea5;
+  --color-link: #5af9e7;
+  --color-link-hover: #ff3ea5;
+  --color-accent: #ff3ea5;
+
+  --font-heading: 'Space Grotesk', 'Futura', 'Impact', system-ui, sans-serif;
+  --font-body: 'Space Grotesk', system-ui, sans-serif;
+  --font-mono: 'Fira Code', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --shadow-card: 0 0 0 2px #ff3ea5, 6px 6px 0 0 #ffe14f;
+  --radius: 0.125rem;
+
+  --link-decoration-hover: underline wavy;
+  --heading-letter-spacing: -0.02em;
+  --heading-text-shadow: 3px 3px 0 #ff3ea5, 6px 6px 0 rgba(90, 249, 231, 0.45);
+  --body-background-image:
+    radial-gradient(circle at 15% 10%, rgba(255, 62, 165, 0.22), transparent 40%),
+    radial-gradient(circle at 85% 80%, rgba(90, 249, 231, 0.18), transparent 45%),
+    radial-gradient(circle at 50% 50%, rgba(255, 225, 79, 0.08), transparent 60%);
+  --selection-bg: #ffe14f;
+  --selection-fg: #140029;
+}
+
+/* Suave — streamlined, warm paper, serif, bronze accents. Minimal and grown-up. */
+:root[data-theme='suave'] {
+  --color-bg: #faf7f2;
+  --color-surface: #f1ebe0;
+  --color-text: #2c2a26;
+  --color-text-muted: #6b665e;
+  --color-heading: #1a1815;
+  --color-border: #d8d2c7;
+  --color-link: #8b6f3f;
+  --color-link-hover: #5e4a28;
+  --color-accent: #8b6f3f;
+
+  --font-heading: 'Playfair Display', 'Didot', 'Georgia', serif;
+  --font-body: 'Georgia', 'Iowan Old Style', 'Apple Garamond', serif;
+  --font-mono: 'Menlo', ui-monospace, SFMono-Regular, monospace;
+
+  --shadow-card: 0 1px 2px rgba(44, 42, 38, 0.08);
+  --radius: 0.125rem;
+
+  --link-decoration-hover: underline;
+  --heading-letter-spacing: -0.01em;
+  --heading-text-shadow: none;
+  --body-background-image: none;
+  --selection-bg: #8b6f3f;
+  --selection-fg: #faf7f2;
+}
+
+/* ---------- Base styles driven by theme tokens ---------- */
+
+html {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+body {
+  background-color: var(--color-bg);
+  background-image: var(--body-background-image);
+  background-attachment: fixed;
+  color: var(--color-text);
+  font-family: var(--font-body);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+::selection {
+  background-color: var(--selection-bg);
+  color: var(--selection-fg);
+}
+
 a {
-  @apply text-blue-700;
+  color: var(--color-link);
+  transition: color 0.15s ease;
 }
 
 a:hover {
-  @apply underline;
+  text-decoration: var(--link-decoration-hover);
+  color: var(--color-link-hover);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  color: var(--color-heading);
+  letter-spacing: var(--heading-letter-spacing);
+}
+
+/* The syntax theme gets a dramatic chromatic shadow on the site title only */
+:root[data-theme='syntax'] .titleContent > div:not(.faceImage) {
+  text-shadow: var(--heading-text-shadow);
 }
 
 @tailwind components;
@@ -31,6 +157,18 @@ a:hover {
   width: 100px;
 }
 
+:root[data-theme='syntax'] .faceImage {
+  border-radius: 50%;
+  border: 3px solid var(--color-border);
+  box-shadow: 0 0 0 3px var(--color-heading), 0 0 30px rgba(255, 62, 165, 0.5);
+}
+
+:root[data-theme='suave'] .faceImage {
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  filter: sepia(0.08);
+}
+
 /* this class is used in markdown content, so needs to be here */
 .postImageContainer {
   text-align: center;
@@ -49,7 +187,7 @@ a:hover {
 .smallPostImage {
   width: 12em;
   height: auto;
-  transition: transform .2s; 
+  transition: transform .2s;
 }
 
 .smallPostImage:hover {
@@ -71,7 +209,7 @@ a:hover {
   font-size: 17px;
   font-style: italic;
   margin-top: 0px;
-  color: var(--caption-color);
+  color: var(--color-text-muted);
 }
 
 .centeredText {
@@ -80,4 +218,156 @@ a:hover {
 
 .rightAlignedText {
   text-align: right;
+}
+
+/* ---------- Theme switcher ---------- */
+
+.themeSwitcher {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.themeSwitcherButton {
+  font: inherit;
+  color: var(--color-text);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  padding: 0.4rem 0.65rem 0.4rem 0.75rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  line-height: 1.2;
+  min-width: 9rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, color 0.15s ease;
+}
+
+.themeSwitcherButton:hover {
+  border-color: var(--color-accent);
+}
+
+.themeSwitcherButton:focus-visible {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 25%, transparent);
+}
+
+.themeSwitcherLabel {
+  flex: 1 1 auto;
+  text-align: left;
+}
+
+.themeSwitcherChevron {
+  color: var(--color-text-muted);
+  flex: 0 0 auto;
+}
+
+.themeSwitcherMenu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  z-index: 60;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 0.65rem;
+  padding: 0.35rem;
+  min-width: 18rem;
+  box-shadow:
+    0 10px 25px -5px rgba(0, 0, 0, 0.1),
+    0 8px 10px -6px rgba(0, 0, 0, 0.05),
+    0 0 0 1px rgba(0, 0, 0, 0.02);
+  animation: themeSwitcherMenuIn 0.12s ease-out;
+}
+
+@keyframes themeSwitcherMenuIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.themeSwitcherOption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+  background: transparent;
+  border: 0;
+  padding: 0.55rem 0.7rem;
+  font: inherit;
+  color: var(--color-text);
+  text-align: left;
+  cursor: pointer;
+  border-radius: 0.4rem;
+  transition: background 0.1s ease, color 0.1s ease;
+}
+
+.themeSwitcherOption + .themeSwitcherOption {
+  margin-top: 0.1rem;
+}
+
+.themeSwitcherOption:hover,
+.themeSwitcherOption:focus-visible {
+  background: var(--color-surface);
+  outline: none;
+}
+
+.themeSwitcherOption[aria-selected='true'] {
+  color: var(--color-heading);
+}
+
+.themeSwitcherOptionMain {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.themeSwitcherOptionText {
+  display: inline-flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.2;
+}
+
+.themeSwitcherOptionLabel {
+  font-weight: 500;
+  color: inherit;
+}
+
+.themeSwitcherOptionDesc {
+  margin-top: 0.15rem;
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.themeSwitcherCheck {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  color: var(--color-accent);
+  flex: 0 0 auto;
+}
+
+.themeSwatch {
+  display: inline-block;
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  flex: 0 0 auto;
 }

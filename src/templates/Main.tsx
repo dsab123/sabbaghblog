@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 
 import { Navbar } from '../navigation/Navbar';
 import { SparkleBursts } from '../layout/Sparkles';
+import { ThemeSwitcher } from '../themes/ThemeSwitcher';
 import { AppConfig } from '../utils/AppConfig';
 
 type IMainProps = {
@@ -65,11 +66,9 @@ const Main = (props: IMainProps) => {
                   GitHub
                 </a>
               </li>
-              {/* <li className="mr-6">
-                <a href="/posts/projects">
-                  Projects
-                </a>
-              </li> */}
+              <li className="mr-6 ml-auto">
+                <ThemeSwitcher />
+              </li>
             </Navbar>
           </div>
         </div>

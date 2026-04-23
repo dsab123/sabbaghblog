@@ -1,5 +1,4 @@
-
-import { GetStaticPaths, GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
 
 import { BlogGallery, IBlogGalleryProps } from '../blog/BlogGallery';
 import { Meta } from '../layout/Meta';
@@ -19,33 +18,25 @@ const PaginatePosts = (props: IBlogGalleryProps) => (
   </Main>
 );
 
-export const getStaticPaths: GetStaticPaths<IPageUrl> = async () => {
-  const posts = getAllPosts(['slug']);
-
-  const pages = convertTo2D(posts, AppConfig.pagination_size);
-
-  return {
-    paths: pages.slice(1).map((_, ind) => ({
-      params: {
-        // Ind starts from zero so we need to do ind + 1
-        // slice(1) removes the first page so we do another ind + 1
-        // the first page is implemented in index.tsx
-        page: `page${ind + 2}`,
-      },
-    })),
-    fallback: false,
-  };
-};
-
-export const getStaticProps: GetStaticProps<
+export const getServerSideProps: GetServerSideProps<
   IBlogGalleryProps,
   IPageUrl
 > = async ({ params }) => {
-  const posts = getAllPosts(['title', 'modified_date', 'date', 'slug', 'tags']); // TODO DANIEL add tags to each post
+  const pageParam = params?.page ?? '';
 
+  if (!/^page\d+$/.test(pageParam)) {
+    return { notFound: true };
+  }
+
+  const posts = getAllPosts(['title', 'modified_date', 'date', 'slug', 'tags']);
   const pages = convertTo2D(posts, AppConfig.pagination_size);
-  const currentPage = Number(params!.page.replace('page', ''));
+
+  const currentPage = Number(pageParam.replace('page', ''));
   const currentInd = currentPage - 1;
+
+  if (currentPage < 2 || currentInd >= pages.length) {
+    return { notFound: true };
+  }
 
   const pagination: IPaginationProps = {};
 
@@ -61,7 +52,7 @@ export const getStaticProps: GetStaticProps<
 
   return {
     props: {
-      posts: pages[currentInd],
+      posts: pages[currentInd]!,
       pagination,
     },
   };
