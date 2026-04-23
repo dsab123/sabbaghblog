@@ -66,7 +66,7 @@ const Main = (props: IMainProps) => {
                   GitHub
                 </a>
               </li>
-              <li className="mr-6 ml-auto">
+              <li className="ml-auto">
                 <ThemeSwitcher />
               </li>
             </Navbar>
