@@ -18,7 +18,7 @@ Over time the topics have ranged from a focus on specific technology (we did a b
 
 For the forseeable future, our focus is shifting to AI - adoption on our team, and what it means for our careers.
 
-We've had productive meetings. I wrote about how we used [local dev containers](http://localhost:4201/posts/cool-tools/#local-dev-containers) to decentralize and speed up development. I tried to show off a claude skill I made to streamline local dev containers, and it worked more or less.
+We've had productive meetings. I wrote about how we used [local dev containers](/posts/cool-tools/#local-dev-containers) to decentralize and speed up development. I tried to show off a claude skill I made to streamline local dev containers, and it worked more or less.
 
 We had a great discussion this morning about how we could utilize agentic workflows to reduce the amount of human interaction involved in customer support. This one's tricky because our product is an infrastructure-level AWS layer, so we're gonna have to bring the context to AI (or the AI to the context).
 
