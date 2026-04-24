@@ -6,5 +6,5 @@ export const AppConfig = {
   url: 'https://sabbagh.blog',
   locale: 'en',
   author: 'Anonymous',
-  pagination_size: 10,
+  pagination_size: 1000,
 };

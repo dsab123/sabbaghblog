@@ -1,5 +1,7 @@
 import { format } from 'date-fns';
 import { GetServerSideProps } from 'next';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { _postsVersion } from '../../utils/_posts-version';
 import { Meta } from '../../layout/Meta';
 import { Main } from '../../templates/Main';
 import { getPostBySlug } from '../../utils/Content';

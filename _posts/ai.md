@@ -7,7 +7,7 @@ image: /assets/images/posts/custom-log.jpeg
 tags: 'ai'
 ---
 
-![Should I go build a log cabin?](/assets/images/posts/custom-log.jpeg)
+![Should I abandon AI like Claude's Chief Engineer and go build a log cabin?](/assets/images/posts/custom-log.jpeg)
 _Thanks to Zachary Kyra-Derksen for making this [photo](https://unsplash.com/photos/ajqDp29Pz7M?utm_source=twitter&utm_medium=referral&utm_content=photos-page-share) available freely on [unsplash](www.unsplash.com) 🎁_
 
 Well, AI is upon us. Or, it has been for some time.
