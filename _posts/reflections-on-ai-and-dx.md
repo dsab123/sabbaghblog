@@ -28,6 +28,8 @@ One of my chief joys as a lead engineer is to make my team's daily lives easier.
 
 I'm not a prophet, but I feel there's a tension brewing here between a healthy focus on DX and agent-aware workflows. Because people and agents are different.
 
+Well, are they all that different?
+
 <br />
 
 I think I need to ruminate on this more, but alas the work day is ending and the kids need to be woken up.
